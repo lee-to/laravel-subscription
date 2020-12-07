@@ -5,6 +5,7 @@
 
 - php artisan vendor:publish --provider="Leeto\Subscription\Providers\SubscriptionServiceProvider"
 - php artisan subscription:make plan
+- set config\subscription default plan id
 - add Leeto\Subscription\Traits\Subscription trait to user model
 - add Leeto\Subscription\Traits\SubscriptionItem trait to subscription item model
 

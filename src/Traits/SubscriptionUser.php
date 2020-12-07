@@ -75,6 +75,10 @@ trait SubscriptionUser
     }
 
     public function makeSubscription($plan_id, $unlimited = true, $ends_at = null, $bank_card_id = null) {
+        if(is_null($plan_id)) {
+            $plan_id = config("subscription.default_plan_id");
+        }
+
         $data = [
             "plan_id" => $plan_id,
             "unlimited" => $unlimited,
@@ -127,12 +131,20 @@ trait SubscriptionUser
     }
 
     public function subscriptionEnd($plan_id = null, $format = "Y-m-d") {
+        if(is_null($plan_id)) {
+            $plan_id = config("subscription.default_plan_id");
+        }
+
         $subscription = $this->subscriptions()->active()->where(["plan_id" => $plan_id])->first();
 
         return $subscription ? $subscription->ends_at->format($format) : false;
     }
 
     public function subscriptionHas($plan_id = null) {
+        if(is_null($plan_id)) {
+            $plan_id = config("subscription.default_plan_id");
+        }
+
         return boolval($this->subscriptions()->active()->where(["plan_id" => $plan_id])->count());
     }
 
