@@ -24,9 +24,9 @@
 - $user->subscriptionHasItem(Model $model) check has 
 
 ### Facade
-- Subscription::getPlans() get all plans \Illuminate\Database\Eloquent\Builder
-- Subscription::getSubscriptions() get all subscriptions \Illuminate\Database\Eloquent\Builder
-- Subscription::getSubscriptionItems() get all subscription items \Illuminate\Database\Eloquent\Builder
+- subscription()->getPlans() || Subscription::getPlans() get all plans \Illuminate\Database\Eloquent\Builder
+- subscription()->getSubscriptions() || Subscription::getSubscriptions() get all subscriptions \Illuminate\Database\Eloquent\Builder
+- subscription()->getSubscriptionItems() || Subscription::getSubscriptionItems() get all subscription items \Illuminate\Database\Eloquent\Builder
 
-- Subscription::getSubscriptionsPayToday() today payment rows
-- Subscription::getSubscriptionItemsPayToday() today payment rows
+- subscription()->getSubscriptionsPayToday() || Subscription::getSubscriptionsPayToday() today payment rows
+- subscription()->getSubscriptionItemsPayToday() || Subscription::getSubscriptionItemsPayToday() today payment rows
