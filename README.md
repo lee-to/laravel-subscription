@@ -1,1 +1,32 @@
 # laravel-subscription
+
+## Install
+- composer require lee-to/laravel-subscription
+
+- php artisan vendor:publish --provider="Leeto\Subscription\Providers\SubscriptionServiceProvider"
+- php artisan subscription:make plan
+- add Leeto\Subscription\Traits\Subscription trait to user model
+- add Leeto\Subscription\Traits\SubscriptionItem trait to subscription item model
+
+## Use
+- $user->subscriptions() get all user subscriptions
+- $user->subscriptionItems() get all user subscription items
+- $user->bankCards() get all user bank cards
+
+- $user->addBankCard($recurring_payment_id, $first_4, $last_4, $month, $year, $type = null, $default = true)
+- $user->deleteBankCard($id) - delete
+- $user->defaultBankCard($id) set default
+
+- $user->makeSubscription($plan_id, $unlimited = true, $ends_at = null, $bank_card_id = null) create or update subscription
+- $user->makeSubscriptionItem(Model $model, $unlimited = true, $ends_at = null, $bank_card_id = null) create or update subscription item
+- $user->subscriptionEnd($plan_id = null, $format = "Y-m-d") end date
+- $user->subscriptionHas($plan_id = null) check has 
+- $user->subscriptionHasItem(Model $model) check has 
+
+### Facade
+- Subscription::getPlans() get all plans \Illuminate\Database\Eloquent\Builder
+- Subscription::getSubscriptions() get all subscriptions \Illuminate\Database\Eloquent\Builder
+- Subscription::getSubscriptionItems() get all subscription items \Illuminate\Database\Eloquent\Builder
+
+- Subscription::getSubscriptionsPayToday() today payment rows
+- Subscription::getSubscriptionItemsPayToday() today payment rows
