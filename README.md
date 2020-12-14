@@ -31,3 +31,8 @@
 
 - subscription()->getSubscriptionsPayToday() || Subscription::getSubscriptionsPayToday() today payment rows
 - subscription()->getSubscriptionItemsPayToday() || Subscription::getSubscriptionItemsPayToday() today payment rows
+
+## Integration with laravel-admin
+- set admin path in admin config 
+- add to admin route Route::resource('subscriptions', \Leeto\Subscription\Admin\Controllers\SubscriptionController::class);
+- add to admin menu ["class" =>\Leeto\Subscription\Admin\Controllers\SubscriptionController::class, "title" => "Subscription"],
