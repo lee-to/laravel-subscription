@@ -21,6 +21,14 @@ class SubscriptionManager
     }
 
     /**
+     * @param $id
+     * @return mixed
+     */
+    public function getPlanPrice($id) {
+        return SubscriptionPlan::query()->where(["id" => $id])->value('price');
+    }
+
+    /**
      * @param array $with
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -36,10 +44,16 @@ class SubscriptionManager
         return SubscriptionItem::query()->with($with);
     }
 
+    /**
+     * @return mixed
+     */
     public function getSubscriptionsPayToday() {
         return $this->getSubscriptions()->payToday()->get();
     }
 
+    /**
+     * @return mixed
+     */
     public function getSubscriptionItemsPayToday() {
         return $this->getSubscriptionItems()->payToday()->get();
     }

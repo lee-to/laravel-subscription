@@ -25,6 +25,7 @@
 - $user->subscriptionHasItem(Model $model) check has 
 
 ### Facade
+- Subscription::getPlanPrice($plan_id) - get plan price
 - subscription()->getPlans() || Subscription::getPlans() get all plans \Illuminate\Database\Eloquent\Builder
 - subscription()->getSubscriptions() || Subscription::getSubscriptions() get all subscriptions \Illuminate\Database\Eloquent\Builder
 - subscription()->getSubscriptionItems() || Subscription::getSubscriptionItems() get all subscription items \Illuminate\Database\Eloquent\Builder
