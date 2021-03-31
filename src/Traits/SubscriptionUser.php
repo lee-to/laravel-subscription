@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
 use Illuminate\Support\Str;
+use Leeto\Subscription\Events\SubscriptionCreated;
+use Leeto\Subscription\Events\SubscriptionItemCreated;
+use Leeto\Subscription\Events\SubscriptionItemUpdated;
+use Leeto\Subscription\Events\SubscriptionUpdated;
 use Leeto\Subscription\Models\Subscription;
 use Leeto\Subscription\Models\SubscriptionBankCard;
 use Leeto\Subscription\Models\SubscriptionHistory;
@@ -87,8 +91,12 @@ trait SubscriptionUser
 
         if($subscription = $this->subscriptions()->where(["plan_id" => $plan_id])->first()) {
             $subscription->update($data);
+
+            event(new SubscriptionUpdated($subscription));
         } else {
             $subscription = $this->subscriptions()->create($data);
+
+            event(new SubscriptionCreated($subscription));
         }
 
         if($subscription) {
@@ -110,12 +118,16 @@ trait SubscriptionUser
                 "unlimited" => $unlimited,
                 "ends_at" => $ends_at,
             ]);
+
+            event(new SubscriptionItemUpdated($subscription));
         } else {
             $subscription = $model->subscriptionItems()->create([
                 "user_id" => $this->id,
                 "unlimited" => $unlimited,
                 "ends_at" => $ends_at,
             ]);
+
+            event(new SubscriptionItemCreated($subscription));
         }
 
         if($subscription) {

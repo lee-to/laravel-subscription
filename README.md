@@ -33,6 +33,18 @@
 - subscription()->getSubscriptionsPayToday() || Subscription::getSubscriptionsPayToday() today payment rows
 - subscription()->getSubscriptionItemsPayToday() || Subscription::getSubscriptionItemsPayToday() today payment rows
 
+### Middleware
+
+- \Leeto\Subscription\Http\Middleware\SubscribedMiddleware
+
+### Events
+
+- \Leeto\Subscription\Events\SubscriptionCreated
+- \Leeto\Subscription\Events\SubscriptionUpdated
+
+- \Leeto\Subscription\Events\SubscriptionItemCreated
+- \Leeto\Subscription\Events\SubscriptionItemUpdated
+
 ## Integration with laravel-admin
 - set admin path in admin config 
 - add to admin route Route::resource('subscriptions', \Leeto\Subscription\Admin\Controllers\SubscriptionController::class);
