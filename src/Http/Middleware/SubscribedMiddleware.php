@@ -16,7 +16,13 @@ class SubscribedMiddleware
      */
     public function handle(Request $request, Closure $next, $plan_id = null)
     {
-        abort_if((!$request->user() || !$request->user()->subscriptionHas($plan_id)), 403);
+        if(!$request->user() || !$request->user()->subscriptionHas($plan_id)) {
+            if(config('subscription.unsubscribed_redirect')) {
+                return redirect(config('subscription.unsubscribed_redirect'));
+            }
+
+            abort(403);
+        }
 
         return $next($request);
     }

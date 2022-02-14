@@ -78,7 +78,7 @@ trait SubscriptionUser
         return boolval($this->subscriptions()->where(["id" => $id])->update(["plan_id" => $plan_id]));
     }
 
-    public function makeSubscription($plan_id, $unlimited = true, $ends_at = null, $bank_card_id = null) {
+    public function makeSubscription($plan_id = null, $unlimited = true, $ends_at = null, $bank_card_id = null) {
         if(is_null($plan_id)) {
             $plan_id = config("subscription.default_plan_id");
         }
