@@ -24,6 +24,10 @@
 - $user->subscriptionHas($plan_id = null) check has 
 - $user->subscriptionHasItem(Model $model) check has 
 
+- User::query()->subscribed()->get() subscribed scope
+- User::query()->unsubscribed()->get() unsubscribed scope
+- User::query()->payToday()->get() payToday scope
+- 
 ### Facade
 - Subscription::getPlanPrice($plan_id) - get plan price
 - subscription()->getPlans() || Subscription::getPlans() get all plans \Illuminate\Database\Eloquent\Builder

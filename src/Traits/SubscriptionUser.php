@@ -18,6 +18,28 @@ use Leeto\Subscription\Models\SubscriptionItemHistory;
 
 trait SubscriptionUser
 {
+    /* Scopes */
+    public function scopeSubscribed(Builder $query)
+    {
+        return $query->whereRelation('subscriptions', function(Builder $q) {
+            return $q->active();
+        });
+    }
+
+    public function scopeUnsubscribed(Builder $query)
+    {
+        return $query->doesntHave('subscriptions')->orWhereHas('subscriptions', function (Builder $q) {
+            return $q->whereDate('ends_at', '<', now());
+        });
+    }
+
+    public function scopePayToday(Builder $query)
+    {
+        return $query->whereRelation('subscriptions', function(Builder $q) {
+            return $q->payToday();
+        });
+    }
+
     /* Relationships */
 
     /**
