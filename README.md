@@ -19,7 +19,7 @@
 - $user->defaultBankCard($id) set default
 
 - $user->makeSubscription($plan_id, $unlimited = true, $ends_at = null, $bank_card_id = null) create or update subscription
-- $user->makeSubscriptionItem(Model $model, $unlimited = true, $ends_at = null, $bank_card_id = null) create or update subscription item
+- $user->makeSubscriptionItem(Model $model, $unlimited = true, $ends_at = null, $bank_card_id = null, $customPrice = null) create or update subscription item
 - $user->subscriptionEnd($plan_id = null, $format = "Y-m-d") end date
 - $user->subscriptionHas($plan_id = null) check has 
 - $user->subscriptionHasItem(Model $model) check has 

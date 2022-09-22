@@ -134,7 +134,7 @@ trait SubscriptionUser
         return $subscription;
     }
 
-    public function makeSubscriptionItem(Model $model, $unlimited = true, $ends_at = null, $bank_card_id = null) {
+    public function makeSubscriptionItem(Model $model, $unlimited = true, $ends_at = null, $bank_card_id = null, $customPrice = null) {
         if($subscription = $model->subscriptionItems()->where(["user_id" => $this->id])->first()) {
             $subscription->update([
                 "unlimited" => $unlimited,
@@ -155,7 +155,7 @@ trait SubscriptionUser
         if($subscription) {
             SubscriptionItemHistory::create([
                 "subscription_item_id" => $subscription->id,
-                "price" => $model->price,
+                "price" => $customPrice ?? $model->price,
                 "bank_card_id" => $bank_card_id
             ]);
         }
